@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+# Title: proxytoggle
+# Description: Toggle org.gnome.system.proxy mode between 'manual' and 'none' using gsettings
+# Author: William Chanrico
+# Date: 18-Dec-2016
+
+echo " _____________________ 	"
+echo "/ hello, who's there? \\	"
+echo "\\ william said hi...  /	"
+echo " ---------------------	"
+echo "       \\   ,__,			"
+echo "        \\  (..)____		"
+echo "           (__)    )\		"
+echo "              ||--|| *	"
+
+command="gsettings";
+schema="org.gnome.system.proxy";
+key="mode";
+
+if [ $($command get $schema $key) == "'none'" ]; then
+	$command set $schema $key manual;
+	echo "Setting $schema $key to $(tput bold)'manual'";
+else
+	gsettings set org.gnome.system.proxy mode none;
+	echo "Setting $schema $key to $(tput bold)'none'";
+fi;
+
+tput sgr0
+
+echo -e 'Done\n'
